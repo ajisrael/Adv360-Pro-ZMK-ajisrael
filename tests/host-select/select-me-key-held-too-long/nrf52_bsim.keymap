@@ -1,0 +1,40 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/kscan_mock.h>
+
+/*
+ * Each event's delay is the time until the next one. A is pressed at 5 s
+ * and goes to host A (d_02, profile 0). BT_SEL 1 at 10.2 s; host B (d_03)
+ * bonds to profile 1 and gets B at 12.2 s. C goes down at 13.0 s, and host A
+ * writes "select me" at about 13.5 s, while C is still held.
+ *
+ * C is held until 15.5 s, longer than ZMK_HOST_SELECT_MAX_DEFER_MS (1 s), so
+ * the switch happens at about 14.8 s with C still down. Host B must get C's
+ * release before the keyboard leaves it, and host A never sees C at all.
+ */
+&kscan {
+    events =
+    <ZMK_MOCK_PRESS(0,0,5000)
+    ZMK_MOCK_RELEASE(0,0,200)
+    ZMK_MOCK_PRESS(1,1,10)
+    ZMK_MOCK_RELEASE(1,1,2000)
+    ZMK_MOCK_PRESS(0,1,500)
+    ZMK_MOCK_RELEASE(0,1,300)
+    ZMK_MOCK_PRESS(1,0,2500)
+    ZMK_MOCK_RELEASE(1,0,1500)
+    ZMK_MOCK_PRESS(0,0,200)
+    ZMK_MOCK_RELEASE(0,0,200)>;
+};
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <
+            &kp A &kp B
+            &kp C &bt BT_SEL 1>;
+        };
+    };
+};

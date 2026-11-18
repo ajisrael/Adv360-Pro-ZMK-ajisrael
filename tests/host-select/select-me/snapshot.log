@@ -1,0 +1,23 @@
+host A [Connected]: FD:9E:B2:48:47:39 (random)
+host A Pairing complete
+host A gets report 00 00 04 00 00 00 00 00 
+host A gets report 00 00 00 00 00 00 00 00 
+keyboard Endpoint changed: BLE:1
+host B [Connected]: FD:9E:B2:48:47:39 (random)
+host B Pairing complete
+host B gets report 00 00 05 00 00 00 00 00 
+host B gets report 00 00 00 00 00 00 00 00 
+host B gets report 00 00 06 00 00 00 00 00 
+host A [host-select state] version 1, active profile 1, my profile 0
+host A [host-select writing select-me]
+keyboard host-select: profile 0 asks to be selected
+host A [host-select select-me written] (err 0x00)
+keyboard host-select: switching to profile 0
+keyboard Endpoint changed: BLE:0
+host A gets report 00 00 00 00 00 00 00 00 
+host A [host-select state] version 1, active profile 0, my profile 0
+host B gets report 00 00 00 00 00 00 00 00 
+host A gets report 00 00 04 00 00 00 00 00 
+host A gets report 00 00 00 00 00 00 00 00 
+host A gets report 00 00 00 00 00 00 00 00 
+host A [host-select state] version 1, active profile 0, my profile 0

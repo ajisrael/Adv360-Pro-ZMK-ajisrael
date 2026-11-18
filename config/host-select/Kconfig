@@ -1,0 +1,21 @@
+config ZMK_HOST_SELECT
+    bool "Let a bonded host switch the keyboard to its own Bluetooth profile"
+    default y
+    # Only the half that talks to the hosts (the left one on the Adv360).
+    depends on ZMK_BLE && (!ZMK_SPLIT || ZMK_SPLIT_ROLE_CENTRAL)
+    help
+      Adds a GATT service through which a bonded host asks the keyboard to
+      make the profile it is bonded to the active one. Used by mousetail to
+      move the keyboard to the machine the mouse pointer is on.
+
+if ZMK_HOST_SELECT
+
+config ZMK_HOST_SELECT_MAX_DEFER_MS
+    int "How long a switch waits for held keys to be released, in milliseconds"
+    default 1000
+    help
+      A switch requested while a key or modifier is held happens once all keys
+      are released, so a held key never ends up pressed on one host and
+      released on the other. After this long the switch happens anyway.
+
+endif

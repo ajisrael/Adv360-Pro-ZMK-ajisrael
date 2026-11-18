@@ -1,0 +1,2 @@
+./ble_test_host_select_central.exe -d=2 -select_me_after=12400
+./ble_test_host_select_central.exe -d=3 -wait_on_start=1300

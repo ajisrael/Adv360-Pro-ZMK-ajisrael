@@ -1,0 +1,7 @@
+s/^d_00: @[^ ]+  \[[^]]+\] <inf> zmk: (Endpoint changed: .*)/keyboard \1/p
+s/^d_00: @[^ ]+  \[[^]]+\] <[a-z]+> zmk: ([a-z_]+: )?(host-select: .*)/keyboard \2/p
+s/^d_00: @[^ ]+  \[[^]]+\] <err> zmk: (.*)/keyboard error: \1/p
+s/^d_02: @[^ ]+ +(([0-9a-f]{2} ){8}).*/host A gets report \1/p
+s/^d_03: @[^ ]+ +(([0-9a-f]{2} ){8}).*/host B gets report \1/p
+s/^d_02: @[^ ]+  \[[^]]+\] <dbg> ble_central: [a-z_]+: (\[(host-select|Connected|Disconnected).*|Pairing complete)/host A \1/p
+s/^d_03: @[^ ]+  \[[^]]+\] <dbg> ble_central: [a-z_]+: (\[(host-select|Connected|Disconnected).*|Pairing complete)/host B \1/p

@@ -1,0 +1,4 @@
+name: host-select
+build:
+  cmake: host-select
+  kconfig: host-select/Kconfig
